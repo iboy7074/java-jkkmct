@@ -1,103 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Java Packages & Importing</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; padding: 24px; background: #f3f5f9;
-      color: #202534; font-family: Arial, sans-serif; line-height: 1.6;
-    }
-    main {
-      max-width: 850px; margin: auto; background: white;
-      padding: 28px; border-radius: 12px; box-shadow: 0 4px 18px #00000012;
-    }
-    h1 { text-align: center; color: #183b68; font-size: 26px; }
-    h2 { margin-top: 28px; color: #183b68; font-size: 20px; }
-    .tag { background: #eaf1fb; padding: 12px; border-radius: 8px; }
-    pre {
-      background: #172033; color: #f4f7ff; padding: 18px;
-      border-radius: 8px; overflow-x: auto; white-space: pre;
-      font-size: 14px; line-height: 1.6;
-    }
-    button {
-      background: #1769d2; color: white; border: 0; border-radius: 7px;
-      padding: 10px 16px; cursor: pointer; font-size: 14px;
-    }
-    button:hover { background: #0e50a8; }
-    .output { background: #f0f7ef; padding: 14px; border-left: 4px solid #329447; }
-    @media (max-width: 600px) { body { padding: 10px; } main { padding: 18px; } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ex No 05 - Java Applet Programs</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 760px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #222; background: #fff; }
+  h1 { text-align: center; border: 1px solid #222; padding: 10px; font-size: 1.4rem; }
+  h2 { margin-top: 28px; font-size: 1.15rem; }
+  pre { background: #fff9a8; padding: 12px; overflow-x: auto; border: 1px solid #ccc; font-size: 0.9rem; }
+  pre.cmd { background: #111; color: #e6e6e6; }
+  .box { border: 1px solid #222; padding: 4px 14px; }
+  .note { font-size: 0.9rem; color: #555; }
+</style>
 </head>
 <body>
-<main>
-  <h1>Java Packages &amp; Importing</h1>
 
-  <h2>Aim</h2>
+<h1>Ex No : 05 &mdash; Java Applet Programs</h1>
+
+<h2>Aim</h2>
+<div class="box">
   <ul>
-    <li>To understand the concept and use of packages in Java.</li>
-    <li>To learn how to use built-in and user-defined packages.</li>
-    <li>To learn how to import classes from other packages.</li>
+    <li>To understand the concept of Java applets.</li>
+    <li>To write simple Java applet programs for displaying text and graphics.</li>
+    <li>To learn basic applet lifecycle methods.</li>
+    <li>To run and test applets using an applet viewer.</li>
   </ul>
+</div>
 
-  <h2>Algorithm / Concept</h2>
-  <ul>
-    <li>A package is a namespace used to organize classes and interfaces.</li>
-    <li>Two types of packages are built-in packages and user-defined packages.</li>
-    <li>Examples of built-in packages are <b>java.util</b> and <b>java.io</b>.</li>
-    <li>The <b>import</b> keyword is used to access classes from another package.</li>
-  </ul>
+<h2>Program 1 : E_HelloApplet.java</h2>
+<pre>import java.applet.Applet;
+import java.awt.Graphics;
 
-  <h2>Benefits of Packages</h2>
-  <ul>
-    <li>Organizes code.</li>
-    <li>Avoids name conflicts.</li>
-    <li>Provides better access control.</li>
-  </ul>
-
-  <h2>Program</h2>
-  <p>Click the button to copy the Java program.</p>
-  <button onclick="copyProgram()">Copy Java Code</button>
-  <span id="status" aria-live="polite"></span>
-
-  <pre><code id="javaCode">import java.util.Scanner;
-
-public class C_BuiltInPackageDemo {
-
-    public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter your name: ");
-        String name = sc.nextLine();
-
-        System.out.println("Hello, " + name + "!");
-
-        sc.close();
+public class E_HelloApplet extends Applet {
+    public void paint(Graphics g) {
+        g.drawString("Hello, Java Applet..!", 50, 50);
     }
-}</code></pre>
+}</pre>
 
-  <h2>Sample Output</h2>
-  <div class="output">
-    Enter your name: Arun<br>
-    Hello, Arun!
-  </div>
+<h2>Program 2 : E_HelloApplet.html</h2>
+<pre>&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;test&lt;/h1&gt;
+    &lt;applet code="E_HelloApplet.class" width="300" height="200"&gt;&lt;/applet&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
 
-  <h2>Result</h2>
-  <p>Thus, the Java program using the built-in <b>java.util</b> package and Scanner class was executed successfully.</p>
-</main>
+<h2>Run Commands</h2>
+<pre class="cmd">java -version
+javac E_HelloApplet.java
+appletviewer E_HelloApplet.html</pre>
+<p class="note">Same folder-la <b>E_HelloApplet.java</b> and <b>E_HelloApplet.html</b> rendum irukkanum. JDK 8 venum.</p>
 
-<script>
-function copyProgram() {
-  const code = document.getElementById("javaCode").innerText;
-  navigator.clipboard.writeText(code).then(() => {
-    document.getElementById("status").textContent = " Code copied!";
-  }).catch(() => {
-    document.getElementById("status").textContent = " Please select and copy the code.";
-  });
-}
-</script>
+<h2>Expected Output</h2>
+<p>"Applet Viewer" window-la <b>Hello, Java Applet..!</b> nu theriyum.</p>
+
+<h2>Result</h2>
+<p>Java applet program successfully created, compiled and executed using appletviewer.</p>
+
+<!-- Real applet tag: "appletviewer index.html" nu run pannina idhu work aagum.
+     Modern browsers-la idhu theriyaadhu, adhu normal. -->
+<applet code="E_HelloApplet.class" width="300" height="200"></applet>
+
 </body>
 </html>
