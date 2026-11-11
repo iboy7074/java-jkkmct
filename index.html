@@ -1,152 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ex No 05 - Java Applet Programs</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MCQ Test – சமூக அறிவியல்</title>
 <style>
-  body { font-family: Georgia, serif; max-width: 760px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #222; background: #fff; }
-  h1 { text-align: center; border: 1px solid #222; padding: 10px; font-size: 1.4rem; }
-  h2 { margin-top: 28px; font-size: 1.15rem; }
-  pre { background: #fff9a8; padding: 12px; overflow-x: auto; border: 1px solid #ccc; font-size: 0.9rem; margin-bottom: 8px; }
-  pre.cmd { background: #111; color: #e6e6e6; }
-  .box { border: 1px solid #222; padding: 4px 14px; }
-  .note { font-size: 0.9rem; color: #555; }
-  .dl { background: #1a56db; color: #fff; border: none; padding: 9px 16px; font-size: 0.95rem; border-radius: 6px; cursor: pointer; }
-  .dl:hover { background: #1444b0; }
-  .dl-all { background: #0e7a3d; margin-top: 10px; }
-  .dl-all:hover { background: #0a5f2f; }
-  .dl-txt { background: #b45309; }
-  .dl-txt:hover { background: #924207; }
-  .txtbox { border: 2px dashed #b45309; padding: 12px 16px; margin-top: 24px; }
-  #txt-content { display: none; }
+:root{--bg:#f3f6f4;--card:#fff;--ink:#17262b;--mute:#5d6e72;--line:#d5dedb;--acc:#0f6b5c;--ok:#1f7a3d;--okb:#e3f3e8;--no:#b3261e;--nob:#fbe7e5;--r:10px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10181a;--card:#182326;--ink:#e8f0ee;--mute:#9fb2b0;--line:#2c3b3e;--acc:#4cc2ac;--ok:#6fd58e;--okb:#143122;--no:#ff8a80;--nob:#3a1816}}
+:root[data-theme="dark"]{--bg:#10181a;--card:#182326;--ink:#e8f0ee;--mute:#9fb2b0;--line:#2c3b3e;--acc:#4cc2ac;--ok:#6fd58e;--okb:#143122;--no:#ff8a80;--nob:#3a1816}
+html{color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Noto Sans Tamil","Latha",system-ui,sans-serif}
+main{max-width:680px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:1.45rem;margin:.2em 0}
+p{margin:.4em 0;color:var(--mute)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:14px 0}
+button{font:inherit;cursor:pointer;border-radius:var(--r);border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 16px}
+button.p{background:var(--acc);border-color:var(--acc);color:#fff}
+button:focus-visible,textarea:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--acc);width:0}
+.top{display:flex;justify-content:space-between;color:var(--mute);font-size:.9rem;margin:8px 0}
+.q{font-size:1.15rem;font-weight:600;margin:12px 0}
+.o{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 14px}
+.o.ok{background:var(--okb);border-color:var(--ok);color:var(--ok)}
+.o.no{background:var(--nob);border-color:var(--no);color:var(--no)}
+.o:disabled{cursor:default}
+label{color:var(--mute)}
+textarea{width:100%;min-height:110px;font:13px/1.4 ui-monospace,monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:var(--r);padding:8px}
+.big{font-size:2.6rem;font-weight:700;color:var(--acc);margin:.1em 0}
+.rv{border-top:1px solid var(--line);padding:10px 0}
+.rv b.ok{color:var(--ok)}.rv b.no{color:var(--no)}
+.hide{display:none}
 </style>
 </head>
 <body>
-
-<h1>Ex No : 05 &mdash; Java Applet Programs</h1>
-
-<h2>Aim</h2>
-<div class="box">
-  <ul>
-    <li>To understand the concept of Java applets.</li>
-    <li>To write simple Java applet programs for displaying text and graphics.</li>
-    <li>To learn basic applet lifecycle methods.</li>
-    <li>To run and test applets using an applet viewer or browser.</li>
-  </ul>
+<main>
+<div id="start">
+  <h1>சமூக அறிவியல் – MCQ தேர்வு</h1>
+  <p>TNUSRB · TNPSC · MHC பயிற்சி வினாக்கள்</p>
+  <div class="card">
+    <p id="count"></p>
+    <div class="row">
+      <label><input type="checkbox" id="shuf" checked> வினாக்களைக் கலக்கு</label>
+      <label>வினாக்கள்: <select id="num"></select></label>
+    </div>
+    <div class="row" style="margin-top:12px"><button class="p" id="go">தேர்வைத் தொடங்கு</button></div>
+  </div>
+  <details class="card">
+    <summary>More questions (paste JSON)</summary>
+    <p>Format: <code>[{"q":"...","o":["A","B","C","D"],"a":0}]</code> where <code>a</code> is the correct option index (0–3).</p>
+    <textarea id="json" placeholder='[{"q":"…","o":["…","…","…","…"],"a":1}]'></textarea>
+    <div class="row" style="margin-top:8px"><button id="add">Add questions</button><span id="msg"></span></div>
+  </details>
 </div>
 
-<h2>Algorithm</h2>
-<div class="box">
-  <ul>
-    <li>A Java applet is a small application that runs in a web browser or applet viewer.</li>
-    <li>Extends java.applet.Applet or javax.swing.JApplet.</li>
-    <li>Uses methods like init(), start(), paint(), and stop().</li>
-  </ul>
+<div id="quiz" class="hide">
+  <div class="top"><span id="pos"></span><span id="tm"></span></div>
+  <div class="bar"><i id="pb"></i></div>
+  <div class="card">
+    <div class="q" id="qt"></div>
+    <div id="opts"></div>
+    <div class="row" style="margin-top:10px;justify-content:space-between">
+      <button id="quit">முடி</button><button class="p" id="next" disabled>அடுத்து</button>
+    </div>
+  </div>
 </div>
 
-<div class="txtbox">
-  <b>Aim + Algorithm + Code (one text file)</b>
-  <p class="note">Aim, Algorithm, rendu program code ellam oru .txt file-la download aagum.</p>
-  <button class="dl dl-txt" onclick="downloadTxt()">&#11015; Download Ex05_Java_Applet.txt</button>
+<div id="res" class="hide">
+  <div class="card" style="text-align:center">
+    <p>உங்கள் மதிப்பெண்</p>
+    <div class="big" id="sc"></div>
+    <p id="sm"></p>
+    <div class="row" style="justify-content:center;margin-top:10px"><button class="p" id="again">மீண்டும் எழுது</button></div>
+  </div>
+  <div class="card" id="rv"></div>
 </div>
-
-<h2>Program 1 : E_HelloApplet.java</h2>
-<pre id="code-java">import java.applet.Applet;
-import java.awt.Graphics;
-
-public class E_HelloApplet extends Applet {
-    public void paint(Graphics g) {
-        g.drawString("Hello, Java Applet..!", 50, 50);
-    }
-}</pre>
-<button class="dl" onclick="downloadFile('E_HelloApplet.java','code-java')">&#11015; Download E_HelloApplet.java</button>
-
-<h2>Program 2 : E_HelloApplet.html</h2>
-<pre id="code-html">&lt;html&gt;
-  &lt;body&gt;
-    &lt;h1&gt;test&lt;/h1&gt;
-    &lt;applet code="E_HelloApplet.class" width="300" height="200"&gt;&lt;/applet&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</pre>
-<button class="dl" onclick="downloadFile('E_HelloApplet.html','code-html')">&#11015; Download E_HelloApplet.html</button>
-<br>
-<button class="dl dl-all" onclick="downloadBoth()">&#11015; Download both code files</button>
-
-<h2>Run Commands</h2>
-<pre class="cmd">java -version
-javac E_HelloApplet.java
-appletviewer E_HelloApplet.html</pre>
-<p class="note">Rendu file-um same folder-la irukkanum. JDK 8 venum.</p>
-
-<h2>Expected Output</h2>
-<p>"Applet Viewer" window-la <b>Hello, Java Applet..!</b> nu theriyum.</p>
-
-<h2>Result</h2>
-<p>Java applet program successfully created, compiled and executed using appletviewer.</p>
-
-<textarea id="txt-content" readonly>Ex No : 05
-Java Applet Programs
-
-Aim :
- - To understand the concept of Java applets.
- - To write simple Java applet programs for displaying text and graphics.
- - To learn basic applet lifecycle methods.
- - To run and test applets using an applet viewer or browser.
-
-Algorithm :
- - A Java applet is a small application that runs in a web browser or applet viewer.
- - Extends java.applet.Applet or javax.swing.JApplet.
- - Uses methods like init(), start(), paint(), and stop().
-
-Program :
-
-javac E_HelloApplet.java
-
-import java.applet.Applet;
-import java.awt.Graphics;
-
-public class E_HelloApplet extends Applet {
-    public void paint(Graphics g) {
-        g.drawString("Hello, Java Applet..!", 50, 50);
-    }
-}
-
-appletviewer E_HelloApplet.html
-
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;h1&gt;test&lt;/h1&gt;
-    &lt;applet code="E_HelloApplet.class" width="300" height="200"&gt;&lt;/applet&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</textarea>
+</main>
 
 <script>
-function saveText(name, text) {
-  var blob = new Blob([text], { type: 'text/plain' });
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = name;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-}
-function downloadFile(name, id) {
-  saveText(name, document.getElementById(id).textContent);
-}
-function downloadBoth() {
-  downloadFile('E_HelloApplet.java', 'code-java');
-  setTimeout(function () { downloadFile('E_HelloApplet.html', 'code-html'); }, 500);
-}
-function downloadTxt() {
-  saveText('Ex05_Java_Applet.txt', document.getElementById('txt-content').value);
-}
+// Answer index a: 0=A, 1=B, 2=C, 3=D
+const BANK=[
+{q:"திருமண வயதுச் சட்டம் முதன் முறையாக எப்போது இயற்றப்பட்டது?",o:["1875","1829","1929","1860"],a:3},
+{q:"திருமண வயது சட்டம் யாருடைய காலத்தில் இயற்றப்பட்டது?",o:["அய்யன்காளி","ஈஸ்வர் சந்திர வித்யாசாகர்","ஆத்மாராம் பாண்டுரங்","சுவாமி விவேகானந்தர்"],a:1},
+{q:"திருமண வயது ஒப்புதல் கமிட்டி தொடங்கப்பட்ட ஆண்டு?",o:["1875","1829","1929","1860"],a:2},
+{q:"1860 - இல் திருமணத்திற்காக நிர்ணயம் செய்யப்பட்ட வயது?",o:["10","12","13","14"],a:0},
+{q:"1891 - இல் திருமணத்திற்காக நிர்ணயம் செய்யப்பட்ட வயது?",o:["10","12","13","14"],a:1},
+{q:"1925 - இல் திருமணத்திற்காக நிர்ணயம் செய்யப்பட்ட வயது?",o:["10","12","13","14"],a:2},
+{q:"வங்கப் பிரிவினை நடைபெற்ற ஆண்டு?",o:["1905","1916","1917","1918"],a:0},
+{q:"சுதேசி இயக்கம் ஏற்படுத்தப்பட்ட ஆண்டு?",o:["1905","1916","1917","1918"],a:0},
+{q:"தன்னாட்சி இயக்கம் ஏற்படுத்தப்பட்ட ஆண்டு?",o:["1905","1916","1917","1918"],a:1},
+{q:"லக்னோ ஒப்பந்தம் ஏற்படுத்தப்பட்ட ஆண்டு?",o:["1905","1916","1917","1918"],a:1},
+{q:"சம்பரான் சத்தியாகிரகம் நடைபெற்ற ஆண்டு?",o:["1905","1916","1917","1918"],a:2},
+{q:"கேதா சத்தியாகிரகம் நடைபெற்ற ஆண்டு?",o:["1905","1916","1917","1918"],a:3},
+{q:"ரௌலட் சட்டம் ஏற்படுத்தப்பட்ட ஆண்டு?",o:["1919","1920","1923","1927"],a:0},
+{q:"ஜாலியன் வாலாபாக் படுகொலை நடைபெற்ற ஆண்டு?",o:["1919","1920","1923","1927"],a:0},
+{q:"ஒத்துழையாமை இயக்கம் ஏற்படுத்தப்பட்ட ஆண்டு?",o:["1919","1920","1923","1927"],a:1},
+{q:"சைமன் குழு நியமிக்கப்பட்ட ஆண்டு?",o:["1922","1927","1928","1923"],a:1},
+{q:"உப்பு சத்தியாகிரகம் நடைபெற்ற ஆண்டு?",o:["1928","1929","1930","1931"],a:2},
+{q:"முதல் வட்டமேசை மாநாடு நடைபெற்ற ஆண்டு?",o:["1928","1929","1930","1931"],a:2},
+{q:"காந்தி - இர்வின் ஒப்பந்தம் ஏற்படுத்தப்பட்ட ஆண்டு?",o:["1928","1929","1930","1931"],a:3},
+{q:"இந்திய அரசுச் சட்டம் மூலமாக இரட்டை ஆட்சி எந்த ஆண்டு அறிமுகம் செய்யப்பட்டது?",o:["1935","1948","1927","1919"],a:3},
+{q:"சௌரி சௌரா சம்பவம் நடைபெற்ற ஆண்டு?",o:["1922","1927","1928","1923"],a:0},
+{q:"சுயராஜ்ஜியக் கட்சி எப்போது தோற்றுவிக்கப்பட்டது?",o:["1922","1927","1928","1923"],a:3},
+{q:"லாகூர் காங்கிரஸ் மாநாடு நடைபெற்ற ஆண்டு?",o:["1928","1929","1930","1931"],a:1},
+{q:"இரண்டாவது வட்டமேசை மாநாடு நடைபெற்ற ஆண்டு?",o:["1928","1929","1930","1931"],a:3},
+{q:"மூன்றாவது வட்டமேசை மாநாடு நடைபெற்ற ஆண்டு?",o:["1932","1929","1930","1931"],a:0},
+{q:"ஆந்திரப் பிரதேசத்தின் தலைநகர்?",o:["ஹைதராபாத்","சித்தூர்","அமராவதி","கடப்பா"],a:2},
+{q:"புலிகள் பாதுகாப்புத் திட்டம் எப்போது தொடங்கப்பட்டது?",o:["1950","1963","1973","2008"],a:2},
+{q:"காரகோரம் கணவாய் எங்குள்ளது?",o:["சிக்கிம்","இமாச்சலப் பிரதேசம்","ஜம்மு காஷ்மீர்","அருணாச்சலப் பிரதேசம்"],a:2},
+{q:"பொமிடிலா கணவாய் எங்குள்ளது?",o:["சிக்கிம்","இமாச்சலப் பிரதேசம்","ஜம்மு காஷ்மீர்","அருணாச்சலப் பிரதேசம்"],a:3},
+{q:"நாதுலா கணவாய் எங்குள்ளது?",o:["சிக்கிம்","இமாச்சலப் பிரதேசம்","ஜம்மு காஷ்மீர்","அருணாச்சலப் பிரதேசம்"],a:0},
+{q:"பாகிஸ்தானையும் ஆப்கானிஸ்தானையும் இணைக்கும் கணவாய்?",o:["போலன் கணவாய்","கைபர் கணவாய்","காரகோரம் கணவாய்","ஜெலிப்லா கணவாய்"],a:1},
+{q:"போலன் கணவாய் எந்த நாட்டில் உள்ளது?",o:["இந்தியா","அமெரிக்கா","பாகிஸ்தான்","சீனா"],a:2},
+{q:"உலகில் மிக அதிக அளவு மழை பெறும் பகுதி?",o:["மௌசின்ராம்","சிரபுஞ்சி","சின்னக்கல்லார்","ஜெய்சால்மர்"],a:0},
+{q:"மௌசின்ராம் எந்த மாநிலத்தில் உள்ளது?",o:["பஞ்சாப்","தமிழ்நாடு","ராஜஸ்தான்","மேகாலயா"],a:3},
+{q:"இந்திய நிலவியல் கள ஆய்வு நிறுவனத்தின் தலைமையிடம் எங்குள்ளது?",o:["கொல்கத்தா","ஒடிசா","ஹைதராபாத்","நாக்பூர்"],a:0},
+{q:"தேசிய அலுமினிய நிறுவனத்தின் (NALCO) தலைமையிடம் எங்குள்ளது?",o:["கொல்கத்தா","ஒடிசா","ஹைதராபாத்","நாக்பூர்"],a:1},
+{q:"இந்திய நிலக்கரி நிறுவனத்தின் தலைமையிடம் எங்குள்ளது?",o:["ஒடிசா","கொல்கத்தா (மேற்கு வங்காளம்)","ஹைதராபாத்","நாக்பூர்"],a:1},
+{q:"இந்திய மாங்கனீசு தாது நிறுவனத்தின் தலைமையிடம் எங்குள்ளது?",o:["கொல்கத்தா","ஒடிசா","ஹைதராபாத்","நாக்பூர்"],a:3},
+{q:"செயில் (SAIL) நிறுவனத்தின் தலைமையிடம் எங்குள்ளது?",o:["மும்பை (மகாராஷ்டிரா)","டார்ஜிலிங்","ஃபரிதாபாத்","புதுடெல்லி"],a:3},
+{q:"நாட்டின் மிகப்பெரிய எண்ணெய் வயல்?",o:["மும்பை ஹை","பேஸ்ஸைம்","அலியாபெத்","குஜராத் கடற்கரை"],a:0},
+{q:"நாட்டின் மிகப் பழமையான எண்ணெய் வயல்?",o:["மும்பை ஹை","பேஸ்ஸைம்","அலியாபெத்","திக்பாய்"],a:3},
+{q:"இந்தியாவில் உற்பத்தி செய்யும் திட்டம் (Make in India) எந்த ஆண்டு தொடங்கப்பட்டது?",o:["1986","2014","2003","1957"],a:1},
+{q:"இந்தியாவின் முதல் மக்கள்தொகை கணக்கெடுப்பு எந்த ஆண்டு மேற்கொள்ளப்பட்டது?",o:["1881","1872","2011","1995"],a:1},
+{q:"முழுமையான முதல் மக்கள்தொகை கணக்கெடுப்பு எந்த ஆண்டு மேற்கொள்ளப்பட்டது?",o:["1881","1872","2011","1995"],a:0},
+{q:"நாட்டின் 15-வது மக்கள்தொகை கணக்கெடுப்பு எந்த ஆண்டு நடைபெற்றது?",o:["1881","1872","2011","1995"],a:2},
+{q:"தேசிய நெடுஞ்சாலை ஆணையம் (NHAI) எந்த ஆண்டு நிறுவப்பட்டது?",o:["1881","1872","2011","1995"],a:3},
+{q:"இந்தியாவின் மிக அதிகவேக இரயில்வண்டி?",o:["புல்லட்","துரந்தோ","தேஜஸ்","காத்திமன்"],a:3},
+{q:"காத்திமன் அதிவிரைவு இரயில்வண்டி மணிக்கு எத்தனை கிலோமீட்டர் வேகத்தில் செல்லும்?",o:["180 கி.மீ","210 கி.மீ","160 கி.மீ","147 கி.மீ"],a:2},
+{q:"மாநில மறுசீரமைப்புச் சட்டம் கொண்டுவரப்பட்ட ஆண்டு?",o:["2003","1947","1986","1956"],a:3},
+{q:"மருதமலை, வெள்ளியங்கிரி மலை மற்றும் ஆனைமலை எந்த மாவட்டத்தில் உள்ளது?",o:["தர்மபுரி","கோயம்புத்தூர்","ஈரோடு","திண்டுக்கல்"],a:1},
+{q:"பழனிமலை எந்த மாவட்டத்தில் உள்ளது?",o:["தர்மபுரி","கோயம்புத்தூர்","ஈரோடு","திண்டுக்கல்"],a:3},
+{q:"நீலகிரிமலை எந்த மாவட்டத்தில் உள்ளது?",o:["திருநெல்வேலி","நீலகிரி","பெரம்பலூர்","விழுப்புரம்"],a:1},
+{q:"ஒகேனக்கல் நீர்வீழ்ச்சி எந்த மாவட்டத்தில் உள்ளது?",o:["தென்காசி","திருநெல்வேலி","தர்மபுரி","தேனி"],a:2}
+];
+const $=id=>document.getElementById(id);
+let Q=[],i=0,score=0,ans=[],t0=0,timer;
+function sh(a){a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.random()*(k+1)|0;[a[k],a[j]]=[a[j],a[k]]}return a}
+function fill(){$("count").textContent="கேள்வி வங்கி: "+BANK.length+" வினாக்கள்";const s=$("num");s.innerHTML="";[10,20,50,100,BANK.length].filter((v,k,a)=>v<=BANK.length&&a.indexOf(v)===k).forEach(v=>s.add(new Option(v,v)));s.value=s.options[s.options.length-1].value}
+function show(id){["start","quiz","res"].forEach(x=>$(x).classList.toggle("hide",x!==id))}
+function start(){let b=$("shuf").checked?sh(BANK):BANK.slice();Q=b.slice(0,+$("num").value).map(q=>{if(!$("shuf").checked)return q;const idx=sh([0,1,2,3]);return{q:q.q,o:idx.map(k=>q.o[k]),a:idx.indexOf(q.a)}});i=0;score=0;ans=[];t0=Date.now();clearInterval(timer);timer=setInterval(tick,1000);tick();show("quiz");render()}
+function tick(){const s=(Date.now()-t0)/1000|0;$("tm").textContent=String(s/60|0).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function render(){const q=Q[i];$("pos").textContent="வினா "+(i+1)+" / "+Q.length;$("pb").style.width=(i/Q.length*100)+"%";$("qt").textContent=q.q;$("next").disabled=true;$("next").textContent=i===Q.length-1?"முடிவு":"அடுத்து";const o=$("opts");o.innerHTML="";q.o.forEach((t,k)=>{const b=document.createElement("button");b.className="o";b.textContent="ABCD"[k]+". "+t;b.onclick=()=>pick(k);o.appendChild(b)})}
+function pick(k){const q=Q[i];ans[i]=k;if(k===q.a)score++;[...$("opts").children].forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add("ok");else if(j===k)b.classList.add("no")});$("next").disabled=false}
+function end(){clearInterval(timer);$("sc").textContent=score+" / "+Q.length;const p=Math.round(score/Q.length*100);$("sm").textContent=p+"% · நேரம் "+$("tm").textContent;$("rv").innerHTML="";Q.forEach((q,k)=>{const d=document.createElement("div");d.className="rv";const ok=ans[k]===q.a;const b=document.createElement("b");b.className=ok?"ok":"no";b.textContent=(k+1)+". "+(ok?"சரி":"தவறு");const s=document.createElement("div");s.textContent=q.q;const c=document.createElement("div");c.style.color="var(--mute)";c.textContent="சரியான விடை: "+"ABCD"[q.a]+". "+q.o[q.a]+(ok||ans[k]==null?"":" (உங்கள் விடை: "+"ABCD"[ans[k]]+". "+q.o[ans[k]]+")");d.append(b,s,c);$("rv").appendChild(d)});show("res")}
+$("go").onclick=start;$("again").onclick=()=>show("start");
+$("next").onclick=()=>{if(i<Q.length-1){i++;render()}else end()};
+$("quit").onclick=()=>{if(confirm("தேர்வை முடிக்கவா?")){Q=Q.slice(0,Math.max(1,i+(ans[i]!=null?1:0)));end()}};
+$("add").onclick=()=>{try{const d=JSON.parse($("json").value);if(!Array.isArray(d))throw 0;const ok=d.filter(x=>x&&x.q&&Array.isArray(x.o)&&x.o.length===4&&x.a>=0&&x.a<4);BANK.push(...ok);fill();$("msg").textContent=ok.length+" added";$("json").value=""}catch(e){$("msg").textContent="Invalid JSON"}};
+const A=(o,l)=>l.forEach(([q,a])=>BANK.push({q,o,a}));
+A(["முட்டை மற்றும் கோழிகள்","உணவு தானியங்கள்","உரங்கள்","சணல் உற்பத்தி"],[["தங்க நூலிழைப் புரட்சி?",3],["சாம்பல் புரட்சி?",2],["பசுமைப் புரட்சி?",1],["வெள்ளிப் புரட்சி?",0]]);
+A(["பால் உற்பத்தி","பருத்தி","உருளைக்கிழங்கு","உரங்கள்"],[["வெள்ளி இழைப் புரட்சி?",1],["வட்டப் புரட்சி?",2],["வெண்மைப் புரட்சி?",0]]);
+A(["எண்ணெய் வித்துக்கள்","மீன்கள் உற்பத்தி","சணல் உற்பத்தி","பால் உற்பத்தி"],[["மஞ்சள் புரட்சி?",0],["நீலப் புரட்சி?",1]]);
+A(["ஜனவரி – மார்ச்","அக்டோபர் – மார்ச்","ஜூன் – செப்டம்பர்","ஏப்ரல் – ஜூன்"],[["காரிஃப் பருவம்?",2],["ராபி பருவம்?",1],["சையத் பருவம்?",3]]);
+A(["ஜனவரி – பிப்ரவரி","அக்டோபர் – டிசம்பர்","ஜூன் – செப்டம்பர்","மார்ச் – மே"],[["குளிர்காலம்?",0],["கோடைக்காலம்?",3],["தென்மேற்குப் பருவக்காற்று காலம்?",2],["வடகிழக்குப் பருவக்காற்று காலம்?",1]]);
+A(["கரிசல் மண்","காதர்","வண்டல் மண்","பாங்கர்"],[["சிற்றோடைகள் மற்றும் ஆறுகளின் வேகம் குறையும் பொழுது படிய வைப்பதினால் உருவாகும் மண்?",2],["வெளிர் நிறமுடைய மணற்பாங்கான மண்?",1],["பழைய வண்டல் படிவுகள் மூலம் உருவாகும் மண்?",3],["தக்காணப் பகுதியில் உள்ள பசால்ட் பாறைகளிலிருந்து உருவாகும் மண்?",0]]);
+A(["சரளை மண்","காடு மற்றும் மலைமண்","வறண்ட பாலை மண்","செம்மண்"],[["பழமையான படிக பாறைகளான கிரானைட், நைஸ் சிதைவடைவதால் உருவாகும் மண்?",3],["இரும்பு மற்றும் அலுமினியத்தின் நீரேற்ற ஆக்சைடுகளால் உருவான மண்?",0]]);
+A(["தாமோதர்","கோசி","சட்லஜ்","மகாநதி"],[["தாமோதர் பள்ளத்தாக்குத் திட்டம் எந்த ஆற்றின் குறுக்கே கட்டப்பட்டுள்ளது?",0],["பக்ரா நங்கல் திட்டம் எந்த ஆற்றின் குறுக்கே கட்டப்பட்டுள்ளது?",2],["ஹிராகுட் திட்டம் எந்த ஆற்றின் குறுக்கே கட்டப்பட்டுள்ளது?",3],["கோசி திட்டம் எந்த ஆற்றின் குறுக்கே கட்டப்பட்டுள்ளது?",1]]);
+A(["பாகீரதி","சம்பல்","கிருஷ்ணா","துங்கபத்ரா"],[["துங்கபத்ரா திட்டம் எந்த ஆற்றின் குறுக்கே கட்டப்பட்டுள்ளது?",3],["தெகிரி அணை திட்டம் எந்த ஆற்றின் குறுக்கே கட்டப்பட்டுள்ளது?",0],["சம்பல் பள்ளத்தாக்குத் திட்டம் எந்த ஆற்றின் குறுக்கே கட்டப்பட்டுள்ளது?",1],["நாகார்ஜுன சாகர் திட்டம் எந்த ஆற்றின் குறுக்கே கட்டப்பட்டுள்ளது?",2]]);
+A(["காவிரி","சட்லஜ்","நர்மதை","துங்கபத்ரா"],[["சர்தார் சரோவர் திட்டம் எந்த ஆற்றின் குறுக்கே கட்டப்பட்டுள்ளது?",2],["மேட்டூர் அணை திட்டம் எந்த ஆற்றின் குறுக்கே கட்டப்பட்டுள்ளது?",0]]);
+A(["டார்ஜிலிங்","கொல்கத்தா","பெங்களூரு","ஃபரிதாபாத்"],[["இந்தியாவின் முதல் நீர்மின் நிலையம் (1897) எங்கு நிறுவப்பட்டது?",0],["இந்திய தேசிய நீர் மின்சக்தி நிறுவனம் எங்கு அமைந்துள்ளது?",3],["இந்தியாவின் முதல் பருத்தி நெசவாலை (1818) எங்கு தொடங்கப்பட்டது?",1]]);
+A(["தர்மபுரி","கோயம்புத்தூர்","ஈரோடு","திண்டுக்கல்"],[["தீர்த்தமலை, சித்தேரிமலை மற்றும் வத்தல்மலை எந்த மாவட்டத்தில் உள்ளது?",0],["சென்னிமலை மற்றும் சிவன்மலை எந்த மாவட்டத்தில் உள்ளது?",2]]);
+A(["நாமக்கல்","வேலூர்","தென்காசி","திருப்பத்தூர்"],[["ஏலகிரிமலை எந்த மாவட்டத்தில் உள்ளது?",3],["பொதிகைமலை எந்த மாவட்டத்தில் உள்ளது?",2],["கொல்லிமலை எந்த மாவட்டத்தில் உள்ளது?",0]]);
+A(["தென்காசி","திருநெல்வேலி","தர்மபுரி","தேனி"],[["கல்யாண தீர்த்தம் நீர்வீழ்ச்சி எந்த மாவட்டத்தில் உள்ளது?",1],["குற்றாலம் நீர்வீழ்ச்சி எந்த மாவட்டத்தில் உள்ளது?",0],["கும்பக்கரை மற்றும் சுருளி நீர்வீழ்ச்சி எந்த மாவட்டத்தில் உள்ளது?",3]]);
+A(["சேலம்","நீலகிரி","விருதுநகர்","கோயம்புத்தூர்"],[["கேத்தரின் மற்றும் பைக்காரா நீர்வீழ்ச்சிகள் எந்த மாவட்டத்தில் உள்ளது?",1],["கிள்ளியூர் நீர்வீழ்ச்சி எந்த மாவட்டத்தில் உள்ளது?",0],["ஐயனார் நீர்வீழ்ச்சி எந்த மாவட்டத்தில் உள்ளது?",2],["வைதேகி, செங்குபதி, சிறுவாணி மற்றும் கோவை குற்றால நீர்வீழ்ச்சிகள் எந்த மாவட்டத்தில் உள்ளது?",3]]);
+A(["முகமது பின் துக்ளக்","ஷெர்ஷா சூர்","ஜஹாங்கீர்","அக்பர்"],[["பேரரசை பலப்படுத்தவும் ஒருங்கிணைக்கவும் சாஹி (ராயல்) சாலையை அமைத்தவர்?",1]]);
+A(["கைப்டர்","கிளாஸ்டர்","ஜின்னிங்","லீ பாக்ஸ்"],[["பருத்தி இழையிலிருந்து விதைகளைப் பிரித்தெடுக்கும் முறை?",2]]);
+A(["தமிழ்நாடு","கர்நாடகா","ஒடிசா","கேரளா"],[["இந்தியாவிலேயே அதிக அளவு காற்றாலைகளைக் கொண்டுள்ள மாநிலம்?",0]]);
+A(["அவிசினியா","ரைசோபோரா","சிரஸ்","A மற்றும் B சரி"],[["பிச்சாவரம் சதுப்பு நிலக்காடுகளில் வளரும் தாவர இனங்கள்?",3]]);
+A(["முதலமைச்சர்","ஆளுநர்","அமைச்சர்கள்","மாவட்ட ஆட்சியர்"],[["மாநில பேரிடர் மேலாண்மை ஆணையத்தின் தலைவராகச் செயல்படுபவர்?",0],["மாவட்ட பேரிடர் மேலாண்மை ஆணையத்தின் தலைவராகச் செயல்படுபவர்?",3]]);
+A(["2024","2019","2023","2018"],[["இந்தியா எந்த ஆண்டை தினைப்பயிர்களின் தேசிய ஆண்டாக அனுசரித்தது?",3],["உலக உணவு மற்றும் வேளாண்மைக் கழகம் எந்த ஆண்டை சர்வதேச தினைப்பயிர்கள் ஆண்டாக அனுசரித்தது?",2]]);
+fill();
 </script>
-
-<!-- Real applet tag: "appletviewer index.html" nu run pannina idhu work aagum. -->
-<applet code="E_HelloApplet.class" width="300" height="200"></applet>
-
 </body>
 </html>
